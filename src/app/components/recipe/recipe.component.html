@@ -1,0 +1,51 @@
+<div [ngClass]="{ recipe, '--main': isMain }" *ngIf="recipe">
+  <div class="recipe__content">
+    <div class="title">{{ recipe.name }}</div>
+    <div class="recipe__ingredients" *ngIf="!isMain">
+      <div class="sub-title">Ingredients</div>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+      </ul>
+    </div>
+    <div class="recipe__instructions" *ngIf="isMain">
+      <div class="sub-title">Instructions</div>
+      <ul>
+        <li *ngFor="let instruction of recipe.instructions; let i = index">
+          {{ i + 1 }}. {{ instruction }}
+        </li>
+      </ul>
+    </div>
+    <div class="recipe__info">
+      <div class="sub-title">Information</div>
+      <ul>
+        <li>
+          <span>{{ recipe.caloriesPerServing }}</span>
+          <div class="text-gray">Calories</div>
+        </li>
+        <li>
+          <span>{{ recipe.rating }}</span>
+          <div class="text-gray">Rating</div>
+        </li>
+        <li>
+          <span>{{ recipe.prepTimeMinutes }}</span>
+          <div class="text-gray">Prep time minutes</div>
+        </li>
+        <li>
+          <span>{{ recipe.cookTimeMinutes }}</span>
+          <div class="text-gray">Cook time minutes</div>
+        </li>
+      </ul>
+    </div>
+    <a
+      *ngIf="!isMain"
+      [routerLink]="['/recipe/', recipe.id]"
+      routerLinkActive="active"
+      class="btn"
+    >
+      Recipe
+    </a>
+  </div>
+  <div [class.recipe__img]="!isMain" [class.recipe__img--main]="isMain">
+    <img [src]="recipe.image" alt="" />
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<!-- recipe -->
+<button (click)="goBack()" class="btn-back">Go Back</button>
+<div class="content">
+  <app-recipe [recipe]="recipe"></app-recipe>
+  <h1 *ngIf="!recipe" class="text-center">Product not found</h1>
+</div>
+<!-- more -->
+<app-more [recipes]="recipes"></app-more>

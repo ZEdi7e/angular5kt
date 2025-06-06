@@ -1,0 +1,38 @@
+<section class="catalog">
+  <!-- header -->
+  <header class="catalog__header" [hidden]="path === 'breakfast'">
+    <a [routerLink]="['/', path, 'all']" routerLinkActive="active"> All </a>
+    <a [routerLink]="['/', path, 'easy']" routerLinkActive="active"> Easy </a>
+    <a [routerLink]="['/', path, 'medium']" routerLinkActive="active">
+      Medium
+    </a>
+  </header>
+
+  <!-- aside -->
+  <aside class="catalog__aside">
+    <a [routerLink]="['/dinner/', difficulty]" routerLinkActive="active">
+      Dinner
+    </a>
+    <a [routerLink]="['/lunch/', difficulty]" routerLinkActive="active">
+      Lunch
+    </a>
+    <a [routerLink]="['/breakfast/', difficulty]" routerLinkActive="active">
+      Breakfast
+    </a>
+  </aside>
+
+  <!-- recipes -->
+  <swiper-container
+    space-between="215"
+    slides-per-view="auto"
+    auto-height="true"
+    class="swiper"
+  >
+    <swiper-slide class="swiper-slide" *ngFor="let recipe of recipes">
+      <app-recipe [recipe]="recipe" [isMain]="false"></app-recipe>
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- more -->
+  <app-more [recipes]="recipes.slice(0, 6)"></app-more>
+</section>
